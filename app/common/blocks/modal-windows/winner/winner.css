@@ -1,0 +1,117 @@
+.modal_winner {
+  box-shadow: 0 60px 80px 0 rgba(0, 0, 0, 0.4);
+  padding: 0;
+  width: 100%;
+  max-width: 530px;
+}
+
+.congratulations {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: stretch;
+  overflow: hidden;
+  font-family: 'GomariceContinue';
+  font-size: 30px;
+}
+
+.winning {
+  margin: 0;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  background: #fbfbfb;
+  align-self: stretch;
+}
+
+.winning__image {
+  max-width: 300px;
+  margin: 30px auto 25px;
+}
+
+.winning__text {
+  font-family: 'Congratulations';
+  font-size: 30px;
+}
+
+.results {
+  display: flex;
+  justify-content: space-between;
+  padding: 0 20px;
+  margin-top: 10px;
+  max-width: inherit;
+}
+
+.results_time_sign, .results_time_sign {
+  color: rgb(150, 152, 155);
+}
+
+.play_again_btn {
+  cursor: pointer;
+  margin: 10px auto;
+  padding: 14px 20px;
+  border: 0;
+  background: linear-gradient(to top, rgba(255, 255, 255, 0) 0%, rgba(250, 198, 100, 0.27) 100%), #fff;
+  border-radius: 25px;
+  letter-spacing: 1px;
+  transition: all .2s ease;
+  box-shadow: 0 15px 40px 0 rgba(0, 0, 0, 0.5);
+  font-family: 'GomariceContinue';
+  font-size: 25px;
+  transition: all 0.5s;
+}
+
+.play_again_btn:hover {
+  -webkit-animation-name: jello;
+  animation-name: jello;
+  -webkit-animation-duration: 1s;
+  animation-duration: 1s;
+  -webkit-animation-fill-mode: both;
+  animation-fill-mode: both;
+  background-color: rgba(255,255,255,0.2);
+}
+
+@keyframes jello {
+  from, 11.1%, to {
+    -webkit-transform: none;
+    transform: none;
+  }
+
+  22.2% {
+    -webkit-transform: skewX(-12.5deg) skewY(-12.5deg);
+    transform: skewX(-12.5deg) skewY(-12.5deg);
+  }
+
+  33.3% {
+    -webkit-transform: skewX(6.25deg) skewY(6.25deg);
+    transform: skewX(6.25deg) skewY(6.25deg);
+  }
+
+  44.4% {
+    -webkit-transform: skewX(-3.125deg) skewY(-3.125deg);
+    transform: skewX(-3.125deg) skewY(-3.125deg);
+  }
+
+  55.5% {
+    -webkit-transform: skewX(1.5625deg) skewY(1.5625deg);
+    transform: skewX(1.5625deg) skewY(1.5625deg);
+  }
+
+  66.6% {
+    -webkit-transform: skewX(-0.78125deg) skewY(-0.78125deg);
+    transform: skewX(-0.78125deg) skewY(-0.78125deg);
+  }
+
+  77.7% {
+    -webkit-transform: skewX(0.390625deg) skewY(0.390625deg);
+    transform: skewX(0.390625deg) skewY(0.390625deg);
+  }
+
+  88.8% {
+    -webkit-transform: skewX(-0.1953125deg) skewY(-0.1953125deg);
+    transform: skewX(-0.1953125deg) skewY(-0.1953125deg);
+  }
+}
+
+/* #2976df;
+rgba(41, 118, 223, 0.5) */
+

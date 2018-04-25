@@ -1,0 +1,21 @@
+@import "fonts.css";
+@import "libs.css";
+@import "base.css";
+
+/* ***************** GAME-STYLES *****************/
+@import "game-field.css";
+/* ******************************************** */
+
+/*  ************** MODAL-WINDOWS ***************************/
+@import "../common/blocks/modal-windows/modal-window.css";
+/* ************************************************************** */
+
+/* ------------ IMPORT-BLOCKS -------------*/
+@import "../common/blocks/custom-table/custom-table.css";
+@import "../common/blocks/button/button.css";
+@import "../common/blocks/button/button_type_latch.css";
+@import "../common/blocks/difficultys/difficultys.css";
+@import "../common/blocks/shirts/shirts.css";
+@import "../common/blocks/profile/profile.css";
+@import "../common/blocks/timer/timer.css";
+/* ----------------------------------------- */

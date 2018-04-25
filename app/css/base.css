@@ -1,0 +1,34 @@
+* {
+	box-sizing: border-box;
+}
+
+*:before, *:after {
+    box-sizing: border-box;
+}
+
+html, body {
+  min-height: 100vh;
+  height: 100vh;
+  font-family: helvetica neue, helvetica, arial, sans-serif;
+  font-weight: 200;
+}
+
+html.modal-active, body.modal-active {
+  overflow: hidden;
+}
+
+body {
+  background-image: url('../resources/img/skelatal_weave.png');
+  background-color: #999;
+}
+
+.img-responsive {
+	display: block;
+	max-width: 100%;
+  height: auto;
+}
+
+.link {
+  color: #dbdbdb;
+  text-decoration: none;
+}

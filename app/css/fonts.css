@@ -1,0 +1,34 @@
+@font-face {
+  font-family: 'AdventPro-Regular';
+  src: url('../resources/fonts/AdventPro-Regular.ttf');
+  font-weight: normal;            
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Minecraft-Evenings';
+  src: url('../resources/fonts/Minecraft Evenings.otf');
+  font-weight: normal;            
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'GomariceContinue';
+  src: url('../resources/fonts/gomarice_no_continue.ttf');
+  font-weight: normal;            
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'TickingTimebombBB';
+  src: url('../resources/fonts/TickingTimebombBB.ttf');
+  font-weight: bold;            
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Congratulations';
+  src: url('../resources/fonts/Congratulations_DEMO.ttf');
+  font-weight: normal;            
+  font-style: normal;
+}

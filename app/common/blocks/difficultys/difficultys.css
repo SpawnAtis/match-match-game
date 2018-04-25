@@ -1,0 +1,13 @@
+.difficultys {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.difficultys__item {
+  text-align: center;
+}
+
+.difficultys__item--active {
+  background-color: red;
+}

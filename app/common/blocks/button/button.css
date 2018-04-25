@@ -1,0 +1,16 @@
+.button {
+  border: 0;
+  padding: 0;
+  cursor:pointer;
+  background-color: transparent;
+}
+
+.button:focus {outline:0;}
+
+
+
+   /* <button class="button button_type_cross" type="button" name="exit-game-button">
+    <span class="button_type_cross_text">Exit</span>
+  </button> */
+
+	

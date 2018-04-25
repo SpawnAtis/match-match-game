@@ -1,0 +1,121 @@
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+
+<body>
+ 
+  <div class="wrapper">
+    <header class="header">
+      <button class="game_rules_button button button_type_latch" type="button" name="game-rules-button" autofocus>
+        <span class="button_type_latch_decorator">Rules</span>
+      </button>
+      <div class="header__timer">
+        <span class="timer">00 : 00 . 000</span>
+      </div>
+      <section class="header__user_profile">
+        <div class="profile">
+          <div class="profile__item">
+            <a href="#" class="profile_link">
+              <i class="font_awesome fas fa-user-circle"></i>
+              <span class="profile_link__user_fullName"></span>
+            </a>
+            <ul class="user_profile_menu">
+              <li class="user_profile_menu__item"><a class="profile_menu_link" data-action="showSettings" href="#">Settings</a></li>
+              <li class="user_profile_menu__item"><a class="profile_menu_link" data-action="signOut" href="#">SignOut</a></li>
+           </ul>
+          </div>
+      </div>
+      </section>
+      <button class="exit_game_button button button_type_latch" type="button" name="exit-game-button">
+          <span class="button_type_latch_decorator"></span>Exit
+      </button>
+    </header>
+    <main class="content">
+      <section class="column_left">
+        <div class="difficulty_selection">
+          <h1 class="difficulty_selection__headline">Select difficulty:</h2>
+          <div class="difficultys">
+            <div class="difficultys__item" data-value="easy" data-count-of-rows="3" data-count-of-columns="4">
+              <h2 class="difficulty_description">Easy 3x4</h2>
+            </div>
+            <div class="difficultys__item" data-value="medium" data-count-of-rows="3" data-count-of-columns="6">
+              <h2  class="difficulty_description">Medium 3x6</h2>
+            </div>
+            <div class="difficultys__item difficultys__item--active" data-value="hard" data-count-of-rows="4" data-count-of-columns="6">
+              <h2  class="v">Hard 4x6</h2>
+            </div>
+            <div class="difficultys__item" data-value="nightmare" data-count-of-rows="5" data-count-of-columns="6">
+              <h2  class="difficulty_description">Nightmare 5x6</h2>
+            </div>
+          </div>
+        </div>
+        <div class="players_rating">
+         <h1 class="players_rating__headline">TOP 10:</h1>
+         <table class="custom_table score_table">
+            <thead>
+                <tr>
+                  <th>Name</th>
+                  <th>Score</th>
+                  <th>Time</th>
+                </tr>
+              </thead>
+            <tbody>
+                <!-- <tr>
+                    <td>Vladislavffdsfsd</td>
+                    <td>1256</td>
+                    <td>05:06:37</td>
+                  </tr>
+                  <tr>
+                    <td>Vladislav</td>
+                    <td>1256</td>
+                    <td>05:06:37</td>
+                  </tr> -->
+            </tbody>
+         </table>
+        </div>
+      </section>
+      <section class="game-lobby"></section>
+      <section class="column_right">
+        <div class="shirts">
+          <h1 class="shirts__headline">Shirts:</h1>
+          <img src="../resources/img/shirts/nba.png" data-shirt-name="nba" alt="Shirt" class="shirts__item img-responsive">
+          <img src="../resources/img/shirts/air_jordan.png"  data-shirt-name="air_jordan" alt="Shirt" class="shirts__item shirts__item--active img-responsive">
+          <img src="../resources/img/shirts/harden_beard.png" data-shirt-name="harden_beard" alt="Shirt" class="shirts__item img-responsive">
+        </div>
+      </section>
+    </main>
+    <footer class="footer">
+      <div class="copy_rights">
+        <img class="copy_rights__logo " src="../resources/img/spawn-logo.png" alt="Logo">
+        <span class="copy_rights__description">
+          Copyright © 2018 <font >Match-Match Game</font>. A <a class="link" href="#">VladPokosenko</a> creation
+        </span>
+      </div>
+      <div class="social_links--footer">
+        <a class="link social_links--footer__item" href="https://www.facebook.com/">
+          <i class="font_awesome fab fa-vk"></i>
+        </a>
+        <a class="link social_links--footer__item" href="https://www.youtube.com/">
+          <i class="font_awesome fab fa-instagram"></i>
+        </a>
+        <a class="link social_links--footer__item" href="https://www.facebook.com/">
+          <i class="font_awesome fab fa-github"></i>
+        </a>
+      </div>
+    </footer>
+  </div>  
+  <link rel="stylesheet" href="../css/index.css">
+
+  <link rel="import" id="authorization_doc" href="./authorization.html">
+  <link rel="import" id="game_rules_modal_doc" href="./game-rules-modal-window.html">
+  <link rel="import" id="winner_modal_doc" href="./winner-modal-window.html">
+
+  <script src="../../build/bundle.js"></script>
+</body>
+
+</html>

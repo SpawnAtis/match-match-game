@@ -1,0 +1,104 @@
+.profile {
+	width: 100%;
+	margin:0 auto;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: baseline;
+}
+
+.profile__item { /* will style only the top level li */
+	box-shadow: 0 0 10px rgba(100, 100, 100, 0.2) inset,1px 1px 1px #CCC;
+	display: inline-block;
+	line-height: 1;
+	margin: 1px;
+	border-radius: 3px;
+	position: relative;
+}
+
+.profile_link {
+	display: flex;
+	justify-content: flex-start;
+	align-items: center;
+	color: inherit;
+	text-decoration:none !important;
+	font-size:24px;
+	padding: 0px;
+}
+
+.profile_link .font_awesome {
+	display: inline-block;
+	width: 47px;
+	height: inherit;
+	font-size: 30px;
+	padding: 0 8px;
+}
+
+.profile_link__user_fullName {
+	margin: 0 10px;
+	white-space: pre;
+	max-width: 140px;
+	overflow: hidden;
+}
+
+.user_profile_menu {
+	position: absolute;
+	list-style:none;
+	text-align:center;
+	padding: 0;
+	margin-left: -14px;
+	font:bold 12px 'Open Sans Condensed', sans-serif;
+	/* This is important for the show/hide CSS animation */
+	max-height: 0px;
+	overflow:hidden;
+	-webkit-transition:max-height 0.4s linear;
+	-moz-transition:max-height 0.4s linear;
+	transition:max-height 0.4s linear;
+}
+
+.user_profile_menu__item {
+	background-color:#313131;
+}
+
+.profile_menu_link {
+	padding: 12px;
+	color:#fff !important;
+	text-decoration: none !important;
+	display: block;
+}
+
+.user_profile_menu__item:nth-child(odd){ /* zebra stripes */
+	background-color:#363636;
+}
+
+.user_profile_menu__item:hover{
+	background-color:#444;
+	z-index: -1;
+}
+
+.user_profile_menu__item:first-child{
+	border-radius:3px 3px 0 0;
+	margin-top: 5px;
+	position:relative;
+}
+
+.user_profile_menu__item:first-child:before{ /* the pointer tip */
+	content:'';
+	position:absolute;
+	width:1px;
+	height:1px;
+	border:5px solid transparent;
+	border-bottom-color:#313131;
+	left:50%;
+	top:-10px;
+	margin-left:-5px;
+}
+
+.user_profile_menu__item:last-child{
+	border-bottom-left-radius:3px;
+	border-bottom-right-radius:3px;
+}
+
+.profile__item:hover .user_profile_menu{
+	max-height:200px; /* Increase when adding more dropdown items */
+}

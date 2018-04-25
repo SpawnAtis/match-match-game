@@ -1,0 +1,60 @@
+.button_type_latch {
+	position: relative;
+	transform: translate(-50%, -50%);
+	text-transform: uppercase;
+	text-decoration: none;
+	text-align: center;
+	color: #000;
+	font-size: 30px;
+	font-family: 'GomariceContinue';
+	letter-spacing: 4px;
+	padding-left: 5px;
+}
+
+.button_type_latch::before,
+.button_type_latch::after,
+.button_type_latch_decorator::before,
+.button_type_latch_decorator::after {
+	content: '';
+	position: absolute;
+	width: 8px;
+	height: 8px;
+	background: transparent;
+	transition: 1s;
+	/* -webkit-mix-blend-mode: hue; */
+}
+
+.button_type_latch::before {
+	top: -2px;
+	left: -2px;
+	border-top: 2px solid #000;
+	border-left: 2px solid #000;
+}
+.button_type_latch::after {
+	top: -2px;
+	right: -2px;
+	border-top: 2px solid #000;
+	border-right: 2px solid #000;
+}
+
+.button_type_latch_decorator::before {
+	bottom: -2px;
+	left: -2px;
+	border-bottom: 2px solid #000;
+	border-left: 2px solid #000;
+}
+.button_type_latch_decorator::after {
+	bottom: -2px;
+	right: -2px;
+	border-bottom: 2px solid #000;
+	border-right: 2px solid #000;
+}
+
+
+.button_type_latch:hover::before,
+.button_type_latch:hover::after,
+.button_type_latch:hover .button_type_latch_decorator::before,
+.button_type_latch:hover .button_type_latch_decorator::after  {
+	width: calc( 100% / 2);
+	height: calc( 100% / 2);
+}

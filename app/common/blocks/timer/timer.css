@@ -1,0 +1,7 @@
+.timer {
+  font-family: 'TickingTimebombBB';
+  font-size: 50px;
+  display: inline-block;
+  visibility: hidden;
+}
+

@@ -1,0 +1,22 @@
+.game_name {
+  font-family: "Minecraft-Evenings";
+  font-size: 70px;
+  line-height: 25px;
+  margin: 13px 0 40px 0;
+}
+
+.game_description {
+  font-size: 25px;
+  line-height: 22px;
+  font-family:  'GomariceContinue';
+}
+
+.about_game > h2 {
+  font-size: 26px;
+  line-height: 22px;
+  font-family:  'GomariceContinue';
+}
+
+
+
+

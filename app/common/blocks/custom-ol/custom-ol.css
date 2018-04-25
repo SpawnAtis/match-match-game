@@ -1,0 +1,76 @@
+.custom_list {
+  background-color: #ffffff;
+  box-sizing: content-box;
+  padding: 0;
+  margin: auto;
+  max-width: 70%;
+}
+
+.custom_list ol {
+  counter-reset: li;
+  overflow: hidden;
+  border: 1px solid #d9d9d9;
+  margin: 0;
+  padding: 0px;
+}
+
+.custom_list__item {
+  float: left;
+  clear: left;
+  width: 100%;
+  margin: 0;
+  list-style: none;
+}
+
+.rules-list ol,
+.custom_list__item, {
+  display: block;
+}
+
+.item_content {
+  font-size: 11px;
+  height: 59px;
+  position: relative;
+  text-decoration: none;
+}
+
+.item_content h2:after {
+  color: #b7b7b7;
+  content: counter(li, decimal-leading-zero);
+  counter-increment: li;
+  font-size: 30px;
+  line-height: 59px;
+  height: 59px;
+  width: 60px;
+  position: absolute;
+  top: 0;
+  right: 0;
+  text-align: center;
+  font-weight: 100;
+  letter-spacing: 1px;
+}
+
+.item_content h2 {
+  float: left;
+  margin: 0 1.5em 0 0;
+  width: 60px;
+  height: 60px;
+  text-align: center;
+  font-family: "Minecraft-Evenings";
+  font-size: 40px;
+  padding-top: 10px;
+  background: #e6e6e6;
+}
+
+.item_content p {
+  margin: 0;
+  width: 600px;
+  padding-top: 20px;
+  font-family:  'GomariceContinue';
+  font-size: 22px;
+  text-align: justify;
+}
+
+.custom_list li + li {
+  border-top: 1px solid #d9d9d9;
+}
