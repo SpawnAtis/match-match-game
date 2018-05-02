@@ -4,6 +4,7 @@ module.exports = {
   devtool: 'source-map',
   entry: './app/js/main.js',
 
+  mode: 'production',
   output: {
     path: path.join(__dirname, 'build'),
     filename: 'bundle.js',

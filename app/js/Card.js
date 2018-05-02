@@ -4,40 +4,30 @@ class Card {
     this.cardDOM = cardDOM;
   }
 
-  show() {
-    this.setAnimation('flipIn');
+  flip() {
+    this.setAnimation('flip');
   }
 
-  hide(firstShow) {
-    let time;
-    if (firstShow) {
-      // если нужно показать и спрятать
-      this.setAnimation('flipInOut');
-      time = 2000; // 2000
-    } else {
-      // если нужно только спрятать
-      this.setAnimation('flipOut');
-      time = 1000; // 1000
-    }
+  showAndHide() {
     setTimeout(() => {
-      // таймаут нужен, чтобы дать завершиться перевороту
-      this.cardDOM.dataset.animationStyle = 'none';
-    }, time);
+      this.setAnimation('flip');
+    }, 500);
+    this.setAnimation('flip');
   }
 
   remove(firstShow) {
     if (firstShow) {
       // если нужно показать и удалить
-      this.setAnimation('showAndRemove');
+      setTimeout(() => {
+        this.setAnimation('getOut');
+      }, 500);
+      this.setAnimation('flip');
     } else this.setAnimation('getOut'); // если нужно только удалить
-    // this.cardDOM.onclick = () => {};
   }
 
-  setAnimation(animationName) {
-    this.cardDOM.dataset.animationStyle = 'none';
-    if (animationName === 'showAndRemove') this.cardDOM.style.visibility = 'hidden';
-    void this.offsetWidth;
-    this.cardDOM.dataset.animationStyle = animationName;
+  setAnimation(animation) {
+    this.offsetWidth = undefined;
+    this.cardDOM.classList.toggle(animation);
   }
 }
 

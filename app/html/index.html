@@ -1,21 +1,17 @@
 <html lang="en">
-
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Document</title>
+  <title>Match-Match Game</title>
+  <link rel="icon" href="../resources/img/favicon_ball.png">
 </head>
-
 <body>
- 
-  <div class="wrapper">
+    <div class="wrapper">
     <header class="header">
-      <button class="game_rules_button button button_type_latch" type="button" name="game-rules-button" autofocus>
-        <span class="button_type_latch_decorator">Rules</span>
-      </button>
+      <h1 class="game_logo">Match-Match Game</h1>
       <div class="header__timer">
-        <span class="timer">00 : 00 . 000</span>
+        <span class="timer"></span>
       </div>
       <section class="header__user_profile">
         <div class="profile">
@@ -31,14 +27,14 @@
           </div>
       </div>
       </section>
-      <button class="exit_game_button button button_type_latch" type="button" name="exit-game-button">
-          <span class="button_type_latch_decorator"></span>Exit
+      <button class="game_rules_button button button_type_latch" type="button" name="game-rules-button" autofocus>
+        <span class="button_type_latch_decorator">Rules</span>
       </button>
     </header>
     <main class="content">
       <section class="column_left">
         <div class="difficulty_selection">
-          <h1 class="difficulty_selection__headline">Select difficulty:</h2>
+          <h2 class="difficulty_selection__headline">Select difficulty:</h2>
           <div class="difficultys">
             <div class="difficultys__item" data-value="easy" data-count-of-rows="3" data-count-of-columns="4">
               <h2 class="difficulty_description">Easy 3x4</h2>
@@ -55,7 +51,7 @@
           </div>
         </div>
         <div class="players_rating">
-         <h1 class="players_rating__headline">TOP 10:</h1>
+         <h2 class="players_rating__headline">TOP 10:</h2>
          <table class="custom_table score_table">
             <thead>
                 <tr>
@@ -65,16 +61,6 @@
                 </tr>
               </thead>
             <tbody>
-                <!-- <tr>
-                    <td>Vladislavffdsfsd</td>
-                    <td>1256</td>
-                    <td>05:06:37</td>
-                  </tr>
-                  <tr>
-                    <td>Vladislav</td>
-                    <td>1256</td>
-                    <td>05:06:37</td>
-                  </tr> -->
             </tbody>
          </table>
         </div>
@@ -82,10 +68,11 @@
       <section class="game-lobby"></section>
       <section class="column_right">
         <div class="shirts">
-          <h1 class="shirts__headline">Shirts:</h1>
+          <h2 class="shirts__headline">Shirts:</h2>
           <img src="../resources/img/shirts/nba.png" data-shirt-name="nba" alt="Shirt" class="shirts__item img-responsive">
           <img src="../resources/img/shirts/air_jordan.png"  data-shirt-name="air_jordan" alt="Shirt" class="shirts__item shirts__item--active img-responsive">
           <img src="../resources/img/shirts/harden_beard.png" data-shirt-name="harden_beard" alt="Shirt" class="shirts__item img-responsive">
+          <img src="../resources/img/shirts/timberwolves.png"  data-shirt-name="timberwolves" alt="Shirt" class="shirts__item img-responsive">
         </div>
       </section>
     </main>

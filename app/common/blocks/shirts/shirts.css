@@ -13,6 +13,8 @@
   border-radius: 8px;
   box-shadow: 0 4px 20px rgba(0,0,0,0.15);
   transition: all 0.3s ease-in-out;
+  width: 154px;
+  height: 146px;
 }
 
 .shirts__item::after {
@@ -36,5 +38,5 @@
 }
 
 .shirts__item--active {
-background-color: red;
+  background-color: rgba(205, 39, 39, 0.8);
 }

@@ -26,6 +26,7 @@ class Timer {
   }
 
   hide() {
+    console.log('timer');
     this.stop();
     this.reset();
     this.timerDOM.style.visibility = 'hidden';
@@ -68,6 +69,10 @@ class Timer {
     }
 
     return `${minutes} : ${seconds} . ${milliseconds}`;
+  }
+
+  toString() {
+    return this.timeFormater();
   }
 }
 

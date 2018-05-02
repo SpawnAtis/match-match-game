@@ -5,9 +5,35 @@
 }
 
 .difficultys__item {
+  font-family: 'Minecraft-Evenings';
+  border-radius: 10px;
+  margin-bottom: 8px;
+  cursor: pointer;
   text-align: center;
+  background: #fff;
+  border: 2px solid transparent;  
+  -webkit-box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3) , 0 0 40px rgba(0, 0, 0, 0.1) inset;
+  -mox-box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3) , 0 0 40px rgba(0, 0, 0, 0.1) inset;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3) , 0 0 40px rgba(0, 0, 0, 0.1) inset;
+}
+
+.difficultys__item:hover {
+  border: 2px solid rgba(205, 39, 39, 0.8);
+}
+
+.difficultys__item::before {
+  top: 10px;
+  bottom: 10px;
+  left: 0;
+  right: 0;
+  -webkit-box-shadow: 0 0 15px rgba(0, 0, 0, 0.6);
+  -mox-box-shadow: 0 0 15px rgba(0, 0, 0, 0.6);
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.6);
+  -moz-border-radius: 10px / 100px;
+  border-radius: 10px / 100px;
 }
 
 .difficultys__item--active {
-  background-color: red;
+  background-color: rgba(205, 39, 39, 0.8);
+  border: 2px solid rgba(205, 39, 39, 0.8);
 }

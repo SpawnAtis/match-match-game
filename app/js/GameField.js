@@ -8,7 +8,8 @@ class GameField {
     this.cardShortName = cardShortName;
     this.countOfCards = width * height;
     this.cardTocompare = undefined; // карта ,с которой сраниваются кликнутые
-    this.gameTimer = new Timer(document.querySelector('.timer'), 40);
+    this.gameTimer = new Timer(document.getElementsByClassName('timer')[0], 40);
+    this.gamePause = false;
     // стили карт
     this.imgs = [
       'brint',
@@ -33,18 +34,18 @@ class GameField {
     this.setShirtCard(this.cardShortName);
 
     const cardPattern = document.createElement('div');
+    cardPattern.innerHTML = "<div class='card_shirt'></div><div class='card_front'></div>";
     cardPattern.className = 'game_field__card';
     cardPattern.dataset.animationStyle = 'none';
 
     const randomValues = this.generateRandomValues();
-    randomValues.forEach(unickNumber => {
+    randomValues.forEach((unickNumber) => {
       // создаём элементы для каждой пары карточек и  применяем к ним стиль
       // индекс стиля в массиссиве indexOf(style) = unickNumber
       const cardDOM = cardPattern.cloneNode(true);
       cardDOM.classList.add(`card_${this.imgs[unickNumber]}`);
       this.gameFieldDOM.appendChild(cardDOM);
     });
-
     // вешаем обработчик кликов на grid-контейнер с карточками
     this.clickOnCard = this.clickOnCard.bind(this);
     this.clickOnCard.isItfirstClick = true; // при первом клике запуститься таймер
@@ -58,39 +59,54 @@ class GameField {
     const selectedCardStyle = selectedCardStyleClass.slice(selectedCardStyleClass.indexOf('_') + 1);
     const selectedCard = new Card(this.imgs.indexOf(selectedCardStyle), selectedCardDOM);
 
-    switch (this.cardTocompare) {
-      case undefined: // открыли первую карту
-        this.cardTocompare = selectedCard;
-        selectedCard.show();
-        break;
-      default:
-        // вторую
-        if (
-          this.cardTocompare.value === selectedCard.value &&
-          this.cardTocompare.cardDOM !== selectedCard.cardDOM
-        ) {
-          // если карты совпадают
-          this.countOfCards += -2;
-          selectedCard.remove(true); // показываем и удаляем
-          this.cardTocompare.remove(false); // просто удаляем
-        } else if (this.cardTocompare.value !== selectedCard.value) {
-          // не совпадают
-          selectedCard.hide(true); // показываем и прячем карту
-          this.cardTocompare.hide(false); // просто прячем
-        } else {
-          selectedCard.hide(false); // кликнули 2 раза по одной и той же карте
-        }
-        this.cardTocompare = undefined;
-        break;
+    if (!this.gamePause) {
+      switch (this.cardTocompare) {
+        case undefined: // открыли первую карту
+          this.cardTocompare = selectedCard;
+          selectedCard.flip();
+          break;
+        default:
+          // вторую
+          if (
+            this.cardTocompare.value === selectedCard.value &&
+            this.cardTocompare.cardDOM !== selectedCard.cardDOM
+          ) {
+            // если карты совпадают
+            this.setPause();
+            setTimeout(() => {
+              this.cardTocompare.remove(); // просто прячем
+              this.cardTocompare = undefined;
+            }, 500);
+            selectedCard.remove(true);
+            this.countOfCards += -2;
+          } else if (this.cardTocompare.value !== selectedCard.value) {
+            // не совпадают
+            this.setPause();
+            setTimeout(() => {
+              this.cardTocompare.flip(); // просто прячем
+              this.cardTocompare = undefined;
+            }, 500);
+            selectedCard.showAndHide(); // показываем и прячем карту
+          } else {
+            selectedCard.flip(); // кликнули 2 раза по одной и той же карте
+            this.cardTocompare = undefined;
+          }
+          break;
+      }
+      // win
+      if (!this.countOfCards) {
+        this.gameTimer.stop();
+        const time = { onOutput: this.gameTimer.toString(), ms: this.gameTimer.time };
+        GameEventsInterface.prototype.winningHandler(time);
+      }
     }
+  }
 
-    // win
-    if (!this.countOfCards) {
-      this.gameTimer.stop();
-      // Game.updateScoreList();
-      let result = {};
-      GameEventsInterface.prototype.showWinnerModalWindow(result);
-    }
+  setPause() {
+    this.gamePause = true;
+    setTimeout(() => {
+      this.gamePause = false;
+    }, 700);
   }
 
   runGameTimer() {
@@ -99,21 +115,21 @@ class GameField {
   }
 
   clickOnCard(event) {
-    if (this.clickOnCard.isItfirstClick) {
-      this.runGameTimer();
-      this.clickOnCard.isItfirstClick = false;
-    }
     const { target } = event;
-    const isContains = target.classList.contains('game_field__card');
-    if (!isContains) return;
-    this.compare(target);
+    const isContains = target.closest('.game_field__card');
+
+    if (isContains) {
+      if (this.clickOnCard.isItfirstClick) {
+        this.runGameTimer();
+        this.clickOnCard.isItfirstClick = false;
+      }
+      this.compare(target.parentElement);
+    }
   }
 
   // заполняет массив парными значениями и рандомит их
   generateRandomValues() {
-    const values = Array.from({ length: this.countOfCards }, (v, k) => Math.floor(k / 2)).sort(
-      () => Math.random() - 0.5
-    );
+    const values = Array.from({ length: this.countOfCards }, (v, k) => Math.floor(k / 2)).sort(() => Math.random() - 0.5);
     return values;
   }
 
@@ -132,7 +148,7 @@ class GameField {
   setShirtCard(shirtName) {
     this.gameFieldDOM.style.setProperty(
       '--card-shirt',
-      `url("../resources/img/shirts/${shirtName}.png")`
+      `url("../resources/img/shirts/${shirtName}.png")`,
     );
   }
 }

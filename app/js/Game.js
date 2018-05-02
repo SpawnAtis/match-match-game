@@ -3,7 +3,8 @@ import GameField from './GameField';
 class Game {
   constructor() {
     this.gameField = null;
-    this.settings = { gameField: null }; // в дальнейшем можно добавлять настройки игры
+    // в дальнейшем можно добавлять настройки игры
+    this.settings = { gameField: null, difficulty: null };
   }
 
   start() {
@@ -13,6 +14,7 @@ class Game {
       height: difficultysInf.countOfRows,
       cardShortName: document.querySelector('.shirts__item--active').dataset.shirtName,
     };
+    this.settings.difficulty = difficultysInf.value;
 
     this.createGameField();
     this.gameField.generateCardsStyles();

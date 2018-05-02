@@ -29,6 +29,10 @@ const main = () => {
 
   gameInterfaceEvents.initGameRulesModalWindow();
   gameInterfaceEvents.initWinnerModalWindow();
+  gameInterfaceEvents.changeModalWindowState.call(gameInterfaceEvents.gameRulesModalWindow, {
+    stateName: 'expand',
+    flag: 'open',
+  });
   gameInterfaceEvents.initScoreList();
   // if user has already authorized
   if (localStorage.getItem('user')) {
@@ -36,20 +40,20 @@ const main = () => {
     game.start();
   } else {
     gameInterfaceEvents.showAuthorizationField(); // показать поле авторизации
-    document.querySelector('.form-authorization').addEventListener('submit', () => {
+    document.getElementsByClassName('form-authorization')[0].addEventListener('submit', (event) => {
       // только после того как пользователь валидно заполнит форму и нажмёт "Start",
       // начнётся инициализаци игры
-      const promise = new Promise(resolve => {
+      const promise = new Promise((resolve) => {
         gameInterfaceEvents.signIn();
-        resolve('Vse ok');
+        event.preventDefault();
+        resolve();
       });
-      promise.then(result => {
-        console.log(`Fulfilled: ${result}`); // result - аргумент resolve
+      promise.then(() => {
         game.start();
       });
+      event.preventDefault(); // preventDefault on submit
     });
   }
 };
 
 whenReady(main);
-// document.getElementById('exitGameBtn').addEventListener('click', gameElements.closeGame);

@@ -9,6 +9,8 @@
 html, body {
   min-height: 100vh;
   height: 100vh;
+  width: 100vw;
+  max-width: 100vw;
   font-family: helvetica neue, helvetica, arial, sans-serif;
   font-weight: 200;
 }
@@ -20,6 +22,7 @@ html.modal-active, body.modal-active {
 body {
   background-image: url('../resources/img/skelatal_weave.png');
   background-color: #999;
+  overflow-x: hidden;
 }
 
 .img-responsive {

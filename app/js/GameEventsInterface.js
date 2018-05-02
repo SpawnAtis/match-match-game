@@ -42,7 +42,9 @@ class GameInterfaceEvents {
       selectedItem.classList.add(activeItemStyleName);
 
       // если игра уже запущена - меняем настройки игры
-      if (this.game.gameField) this.changeGameSettings(gameOptionName);
+      if (document.querySelector('.game_field') !== null) {
+        this.changeGameSettings(gameOptionName);
+      }
     }
   }
 
@@ -91,9 +93,7 @@ class GameInterfaceEvents {
   showUserProfile() {
     const profileLinkUserFullName = this.userProfile.querySelector('.profile_link__user_fullName');
     const user = JSON.parse(localStorage.getItem('user'));
-    profileLinkUserFullName.appendChild(
-      document.createTextNode(`${user.firstName} ${user.secondName}`)
-    );
+    profileLinkUserFullName.appendChild(document.createTextNode(`${user.firstName} ${user.secondName}`));
     this.userProfile.style.visibility = 'visible';
   }
 
@@ -116,10 +116,8 @@ class GameInterfaceEvents {
     localStorage.removeItem('user');
     this.userProfile.querySelector('.profile_link__user_fullName').firstChild.remove();
     this.userProfile.style.visibility = 'hidden';
+    this.game.gameField.gameTimer.hide();
     this.game.gameField.gameFieldDOM.remove();
-    if (this.game.gameField.gameTimer.isOn) {
-      this.game.gameField.gameTimer.hide();
-    }
     this.showAuthorizationField();
   }
 
@@ -127,52 +125,93 @@ class GameInterfaceEvents {
     const scoreList = JSON.parse(localStorage.getItem('scoreList'));
     if (scoreList) {
       for (let i = 0; i < scoreList.length; i++) {
-        const row = this.scoreTable.tBodies[0].insertRow(i);
-        const cellFullName = row.insertCell(0);
-        cellFullName.innerHTML = scoreList[i].fullName;
-        const cellScore = row.insertCell(1);
-        cellScore.innerHTML = scoreList[i].score;
-        const cellTime = row.insertCell(2);
-        cellTime.innerHTML = scoreList[i].time;
+        this.addGameResult.call(this.scoreTable, scoreList[i], i);
       }
+    } else {
+      localStorage.setItem('scoreList', JSON.stringify([]));
     }
+  }
+
+  addGameResult({ fullName, score, time }, number) {
+    // this = scoreTableDOM
+    const row = this.tBodies[0].insertRow(number);
+    const cellFullName = row.insertCell(0);
+    cellFullName.innerHTML = fullName;
+    const cellScore = row.insertCell(1);
+    cellScore.innerHTML = score;
+    const cellTime = row.insertCell(2);
+    cellTime.innerHTML = time;
+  }
+
+  updateScoreList(time) {
+    const scoreTableDOM = document.querySelector('.score_table');
+
+    const factors = {
+      easy: 10,
+      medium: 20,
+      hard: 30,
+      nightmare: 40,
+    };
+    const difficulty = document.querySelector('.difficultys__item--active').dataset.value;
+    const x = factors[difficulty];
+    const y = time.ms / 3600000;
+    const score = ~~(x / y);
+
+    const user = JSON.parse(localStorage.getItem('user'));
+    const fullName = `${user.firstName} ${user.secondName}`;
+    const scoreList = JSON.parse(localStorage.getItem('scoreList'));
+
+    scoreList.push({ time: time.onOutput, score, fullName });
+    scoreList.sort((a, b) => b.score - a.score);
+    if (scoreList.length > 10) scoreList.pop();
+    scoreTableDOM.tBodies[0].innerHTML = '';
+    for (let i = 0; i < scoreList.length; i++) {
+      this.addGameResult.call(scoreTableDOM, scoreList[i], i);
+    }
+
+    localStorage.setItem('scoreList', JSON.stringify(scoreList));
+    return score;
   }
 
   initGameRulesModalWindow() {
     document.body.appendChild(this.gameRulesModalWindow);
-
     this.gameRulesBtn.addEventListener(
       'click',
       this.changeModalWindowState.bind(this.gameRulesModalWindow, {
         stateName: 'expand',
         flag: 'open',
-      })
+      }),
     );
     this.gameRulesModalWindow.addEventListener(
       'click',
       this.changeModalWindowState.bind(this.gameRulesModalWindow, {
         stateName: 'collapse',
         flag: 'close',
-      })
+      }),
     );
   }
 
   initWinnerModalWindow() {
     document.body.appendChild(this.winnerModalWindow);
-    const playAgaintBtn = this.winnerModalWindow.querySelector('.play_again_btn');
-
-    playAgaintBtn.addEventListener(
-      'click',
-      this.changeModalWindowState.bind(this.winnerModalWindow, {
-        stateName: 'runaway',
-        flag: 'close',
-      })
-    );
+    this.winnerModalWindow
+      .querySelector('.play_again_btn')
+      .addEventListener('click', this.playAgainBtnHandler.bind(this));
   }
 
-  showWinnerModalWindow(data) {
-    let { time, score } = data;
-    this.changeModalWindowState.call(document.querySelector('.modal_window--winner'), {
+  playAgainBtnHandler() {
+    this.changeModalWindowState.call(this.winnerModalWindow, {
+      stateName: 'runaway',
+      flag: 'close',
+    });
+    this.game.restart();
+  }
+
+  showWinnerModalWindow(results) {
+    const { score, time } = results;
+    const modalWindow = document.querySelector('.modal_window--winner');
+    modalWindow.querySelector('.results_time').innerHTML = time;
+    modalWindow.querySelector('.results_score').innerHTML = score;
+    this.changeModalWindowState.call(modalWindow, {
       stateName: 'run',
       flag: 'open',
     });
@@ -193,7 +232,12 @@ class GameInterfaceEvents {
     }
   }
 
-  // static showWinnerModalWindow() {}
+  winningHandler(time) {
+    const score = this.updateScoreList(time);
+    setTimeout(() => {
+      this.showWinnerModalWindow({ time: time.onOutput, score });
+    }, 1500);
+  }
 }
 
 export default GameInterfaceEvents;
